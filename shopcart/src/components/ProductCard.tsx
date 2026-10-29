@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { useCartDispatch } from '../context/CartContext';
 import type { Product } from '../types';
 
 interface ProductCardProps {
@@ -7,15 +6,6 @@ interface ProductCardProps {
 }
 
 function ProductCard({ product }: ProductCardProps) {
-  const dispatch = useCartDispatch();
-
-  function handleAddToCart() {
-    dispatch({
-      type: 'ADD_ITEM',
-      payload: product,
-    });
-  }
-
   return (
     <article className="product-card">
       <div className="product-icon" aria-hidden="true">
@@ -31,10 +21,10 @@ function ProductCard({ product }: ProductCardProps) {
       <div className="product-info">
         <h3>{product.name}</h3>
         <p className="product-price">
-            ₹{product.price.toFixed(2)}
+          ₹{product.price.toFixed(2)}
         </p>
 
-        <button className="primary-button" onClick={handleAddToCart}>
+        <button className="primary-button" disabled>
           Add to Cart
         </button>
       </div>

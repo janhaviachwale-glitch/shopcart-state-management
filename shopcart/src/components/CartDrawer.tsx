@@ -1,4 +1,3 @@
-import { useCartState } from '../context/CartContext';
 import CartItemsList from './CartItemsList';
 
 interface CartDrawerProps {
@@ -10,25 +9,8 @@ export default function CartDrawer({
   isOpen,
   onClose,
 }: CartDrawerProps) {
-  const cart = useCartState();
-
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-
   if (!isOpen) {
     return null;
-  }
-
-  function handleCheckout() {
-    if (cart.length === 0) {
-      return;
-    }
-
-    window.alert(
-      `Checkout ready!\n${cart.reduce((sum, item) => sum + item.quantity, 0)} item(s)\nTotal: ₹${total.toFixed(2)}`,
-    );
   }
 
   return (
@@ -60,19 +42,18 @@ export default function CartDrawer({
         <div className="drawer-footer">
           <div className="cart-total">
             <span>Subtotal</span>
-            <strong>₹{total.toFixed(2)}</strong>
+            <strong>₹0.00</strong>
           </div>
 
           <button
             className="primary-button checkout-button"
-            disabled={cart.length === 0}
-            onClick={handleCheckout}
+            disabled
           >
             Proceed to Checkout
           </button>
 
           <p className="checkout-note">
-            Checkout is a baseline demo trigger for Deliverable 1.
+            Cart functionality will be added in the Context deliverable.
           </p>
         </div>
       </aside>

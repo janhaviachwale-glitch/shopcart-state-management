@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { CartProvider } from './context/CartContext';
 import Header from './components/Header';
 import Catalog from './components/Catalog';
 import CartDrawer from './components/CartDrawer';
@@ -45,9 +44,5 @@ function ShopCartContent() {
 }
 
 export default function App() {
-  return (
-    <CartProvider>
-      <ShopCartContent />
-    </CartProvider>
-  );
+  return <ShopCartContent />;
 }
